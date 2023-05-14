@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { GlobalContext } from "../../utils/GlobalContext"
 
 const CAPITALS = [{ state: "Acre", short: "AC", capital: "Rio Branco" },
 { state: "Alagoas", short: "AL", capital: "Maceió" },
@@ -28,12 +29,15 @@ const CAPITALS = [{ state: "Acre", short: "AC", capital: "Rio Branco" },
 { state: "Tocantins", short: "TO", capital: "Palmas" }]
 
 export const List = () => {
-  const [list, setList] = useState(CAPITALS)
+  const {search} = useContext(GlobalContext)
+  const [list] = useState(CAPITALS)
 
   return <>
-    <ul>
+    <ul className="list">
       {list && list.map((item, index) => {
-        return <li key={'item' + index}>{item.capital} is capital of {item.state}</li>
+        const text = `${item.capital} is the capital of ${item.state}`
+        const result = text.replace(new RegExp(`(${search})`,"ig"),"<span>$1</span>")
+        return new RegExp(search, "i").test(text) ? <li key={'item' + index} dangerouslySetInnerHTML={{__html: result}}></li> : null
       })}
     </ul>
   </>

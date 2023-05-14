@@ -4,14 +4,19 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --text-color: #464646;
+  --dark-color: #464646;
+  --bk-color: #fefed1;
+
+  color: var(--text-color);
+  background-color: var(--bk-color);
 }
 
 a {
@@ -26,6 +31,16 @@ a:hover {
 body {
   margin: 0;
   place-items: center;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  width: 400px;
+  padding: 20px 30px;
 }
 
 h1 {
@@ -52,4 +67,19 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.filter input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--dark-color);
+  outline: none;
+}
 
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list span {
+  color: red;
+}
